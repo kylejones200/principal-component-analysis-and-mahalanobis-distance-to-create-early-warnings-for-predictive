@@ -40,7 +40,7 @@ def calculate_mahalanobis_distance(df: pd.DataFrame, pca_columns: List[str]) -> 
 
 def plot_health_index(df: pd.DataFrame, unit_id: int, distance_col: str,
                      threshold: float, output_path: Path):
- """Plot health index for a specific unit """
+    """Plot health index for a specific unit """
     fig, ax = plt.subplots(figsize=(8, 4))
     
     unit_data = df[df['unit'] == unit_id]

@@ -48,7 +48,7 @@ def main():
     logging.info(f"Explained variance ratio: {pca.explained_variance_ratio_}")
     logging.info(f"Total explained variance: {pca.explained_variance_ratio_.sum():.2%}")
     
-        pca_columns = [f'pca_{i+1}' for i in range(config['model']['n_components'])]
+    pca_columns = [f'pca_{i+1}' for i in range(config['model']['n_components'])]
     df['distance'] = calculate_mahalanobis_distance(df, pca_columns)
     
     logging.info(f"Plotting health indices for {len(config['analysis']['units_to_plot'])} units...")

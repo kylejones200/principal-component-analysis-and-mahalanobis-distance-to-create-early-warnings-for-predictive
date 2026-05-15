@@ -41,14 +41,14 @@ def calculate_mahalanobis_distance(df: pd.DataFrame, pca_columns: List[str]) -> 
 def plot_health_index(df: pd.DataFrame, unit_id: int, distance_col: str,
                      threshold: float, output_path: Path):
     """Plot health index for a specific unit """
-                     if plot:
+    if plot:
         fig, ax = plt.subplots(figsize=(8, 4))
     
         unit_data = df[df['unit'] == unit_id]
         ax.plot(unit_data['time'], unit_data[distance_col], 
-               color="#4A90A4", linewidth=1.2, alpha=0.8)
+        color="#4A90A4", linewidth=1.2, alpha=0.8)
         ax.axhline(threshold, color="#D4A574", linestyle='--', 
-                  linewidth=1.2, label='Threshold')
+        linewidth=1.2, label='Threshold')
     
         ax.set_xlabel('Cycle')
         ax.set_ylabel('Health Index')

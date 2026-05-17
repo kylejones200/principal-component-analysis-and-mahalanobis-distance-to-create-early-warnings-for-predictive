@@ -59,24 +59,26 @@ def plot_health_index(
     output_path: Path,
 ):
     """Plot health index for a specific unit"""
-    if plot:
-        fig, ax = plt.subplots(figsize=(8, 4))
+    if not plot:
+        return
 
-        unit_data = df[df["unit"] == unit_id]
-        ax.plot(
-            unit_data["time"],
-            unit_data[distance_col],
-            color="#4A90A4",
-            linewidth=1.2,
-            alpha=0.8,
-        )
-        ax.axhline(
-            threshold, color="#D4A574", linestyle="--", linewidth=1.2, label="Threshold"
-        )
+    fig, ax = plt.subplots(figsize=(8, 4))
 
-        ax.set_xlabel("Cycle")
-        ax.set_ylabel("Health Index")
-        ax.legend(loc="best")
+    unit_data = df[df["unit"] == unit_id]
+    ax.plot(
+        unit_data["time"],
+        unit_data[distance_col],
+        color="#4A90A4",
+        linewidth=1.2,
+        alpha=0.8,
+    )
+    ax.axhline(
+        threshold, color="#D4A574", linestyle="--", linewidth=1.2, label="Threshold"
+    )
 
-        plt.savefig(output_path, dpi=100, bbox_inches="tight")
-        plt.close()
+    ax.set_xlabel("Cycle")
+    ax.set_ylabel("Health Index")
+    ax.legend(loc="best")
+
+    plt.savefig(output_path, dpi=100, bbox_inches="tight")
+    plt.close()

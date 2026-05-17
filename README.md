@@ -49,3 +49,11 @@ Edit `config.yaml` to customize:
 - Requires CMAPSS dataset or similar format.
 - Threshold selection is critical for early warning.
 - PCA assumes linear relationships; nonlinear methods may be needed for complex systems.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

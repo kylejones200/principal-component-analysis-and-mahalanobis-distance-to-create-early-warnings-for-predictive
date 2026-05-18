@@ -21,7 +21,7 @@ logging.basicConfig(
 )
 
 
-def load_config(config_path: Path = None) -> dict:
+def load_config(config_path: Path | None = None) -> dict:
     """Load configuration from YAML file."""
     if config_path is None:
         config_path = Path(__file__).parent / "config.yaml"
@@ -42,7 +42,6 @@ def main():
         "--output-dir", type=Path, default=None, help="Output directory for plots"
     )
     args = parser.parse_args()
-
     config = load_config(args.config)
     output_dir = (
         Path(args.output_dir)
@@ -50,23 +49,18 @@ def main():
         else Path(config["output"]["figures_dir"])
     )
     output_dir.mkdir(exist_ok=True)
-
     data_path = args.data_path if args.data_path else Path(config["data"]["source"])
     if not data_path.exists():
         raise FileNotFoundError(f"Data file not found: {data_path}")
-
         df = load_cmapss_data(data_path, config["data"]["separator"])
-
         df, pca, scaler = apply_pca(
             df, config["model"]["selected_sensors"], config["model"]["n_components"]
         )
 
     logging.info(f"Explained variance ratio: {pca.explained_variance_ratio_}")
     logging.info(f"Total explained variance: {pca.explained_variance_ratio_.sum():.2%}")
-
     pca_columns = [f"pca_{i + 1}" for i in range(config["model"]["n_components"])]
     df["distance"] = calculate_mahalanobis_distance(df, pca_columns)
-
     logging.info(
         f"Plotting health indices for {len(config['analysis']['units_to_plot'])} units..."
     )

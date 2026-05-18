@@ -31,7 +31,7 @@ def calculate_mahalanobis_distance(df: pd.DataFrame, pca_columns: List[str]) -> 
     distance = np.sqrt(np.sum(pca_values ** 2, axis=1))
     return pd.Series(distance, index=df.index)
 
-def plot_health_index(df: pd.DataFrame, unit_id: int, distance_col: str, threshold: float, output_path: Path, plot: bool = False):
+def plot_health_index(df: pd.DataFrame, unit_id: int, distance_col: str, threshold: float, output_path: Path, plot: bool=False):
     """Plot health index for a specific unit"""
     if not plot:
         return
